@@ -64,7 +64,7 @@ int _printf(const char *format, ...)
 			{
 				case 'c':{
 					j = va_arg(arg, int);
-					len += 1;
+					len1 += 1;
 					_putchar(j);
 					break; }
 				case 's':{
@@ -74,7 +74,7 @@ int _printf(const char *format, ...)
 					break; }
 				case '%':{
 					j = va_arg(arg, int);
-					len += 1;
+					len1 += 1;
 					_putchar('%');
 					break; }
 			}

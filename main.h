@@ -1,4 +1,4 @@
-#ifndef _main_h_
+#ifndef _main_h_i
 #define _main_h_
 int _strlen(char *s);
 void _puts(char *str);
