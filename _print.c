@@ -1,101 +1,47 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
-
 /**
- * _strlen - calculate the length of a string
- * @s: The string
- * Return: The length of string s
- */
-
-int _strlen(char *s)
-{
-	int i;
-
-	for (i = 0; s[i] != '\0'; i++)
-		;
-	return (i);
-}
-
-
-/**
- * _puts - A function that prints a string followed by a new line
- * @str: input string
- * Return: void
- */
-
-void _puts(char *str)
-{
-	int count = 0;
-
-	while (count >= 0)
-	{
-		if (str[count] == '\0')
-		{
-			break;
-		}
-		_putchar(str[count]);
-		count++;
-	}
-}
-
-/**
- * _printf - print the input to stdout
- * @format: The input format
- * Return: The number of characters
+ * _printf - function to print anything
+ * @format: types of argument passed to the function
+ *
+ *  Return: number of characters printed
  */
 
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0, j = 0;
-	int len1 = 0, len2 = 0;
-	char *s;
-	va_list arg;
+	int check = 0, i;
+	va_list arguments;
+	int (*func)(va_list);
+
+	va_start(arguments, format);
 
 	if (format == NULL)
-		return (0);
-	va_start(arg, format);
-	for (i = 0; *(format + i) != '\0'; i++)
+		return (-1);
+
+	for (i = 0; format[i]; i++)
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			switch (format[i])
+			if (!(format[i]))
+				return (-1);
+
+			func = get_flag_func(format[i]);
+
+			if (func == NULL)
 			{
-				case 'c':{
-					j = va_arg(arg, int);
-					len1 += 1;
-					_putchar(j);
-					break; }
-				case 's':{
-					s = va_arg(arg, char *);
-					len2 += _strlen(s);
-					_puts(s);
-					break; }
-				case '%':{
-					j = va_arg(arg, int);
-					len1 += 1;
-					_putchar('%');
-					break; }
-				case 'd':{
-                                        j = va_arg(arg, int);
-                                        len1 += 4;
-                                        putchar(j);
-                                        break; }
-                                case 'i':{
-                                        j = va_arg(arg, int);
-                                        len1 += 4;
-                                        putchar(j);
-                                        break; }
+				_write('%');
+				_write(format[i]);
+				check += 2;
 			}
+			else
+				check += func(arguments);
 		}
 		else
 		{
-			_putchar(format[i]);
-			len1 += 1;
+			_write(format[i]);
+			check++;
 		}
 	}
-	va_end(arg);
-	return (len1 + len2);
+	va_end(arguments);
+	return (check);
 }
-
