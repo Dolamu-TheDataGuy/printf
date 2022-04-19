@@ -77,6 +77,16 @@ int _printf(const char *format, ...)
 					len1 += 1;
 					_putchar('%');
 					break; }
+				case 'd':{
+                                        j = va_arg(arg, int);
+                                        len1 += 4;
+                                        putchar(j);
+                                        break; }
+                                case 'i':{
+                                        j = va_arg(arg, int);
+                                        len1 += 4;
+                                        putchar(j);
+                                        break; }
 			}
 		}
 		else
