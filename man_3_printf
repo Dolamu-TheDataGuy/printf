@@ -1,0 +1,39 @@
+_printf
+
+Name
+	_printf - format and print data
+
+SYNOPSIS
+	_printf FORMAT [ARGUMENT]...
+	_printf OPTION
+
+DESCRIPTION
+	Print ARGUMENT(s) according to FORMAT, or execute according to OPTION.
+	It specifies the variable length and convert it to output.
+
+	FORMAT controls the output as in c printf. Interpreted sequence are:
+	
+	-c	prints character
+	
+	-s	prints string
+	
+	-u	prints unsigned decimal integer
+	
+	-X	print unsigned hexadecimal integer
+	
+	-x	also prints unsigned hexadecimal integer
+
+	-i	prints integer
+
+	-d	prints decimal
+
+	-p	prints address
+
+	-%%	a single %
+
+	NOTE: 	your shell may come with it's own version of printf, which automatically supersedes the
+	version described here.
+
+AUTHOR
+	Written by Daniel Obembe and Dolamu Oludare
+	April 2022.
